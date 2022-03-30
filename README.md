@@ -55,16 +55,22 @@ cd easy-rsa/easyrsa3
 ```
 <br/>
 2. Cree un nuevo PKI y CA:
+
 ```
 ./easyrsa init-pki
 ./easyrsa build-ca nopass
+
 ```
+<br/>
+
 Verifique que el certificado CA esté generado en la ruta ```./pki/ca.crt```
+
 <br/>
 3. Genere un certificado de servidor VPN:
 ```
 ./easyrsa build-server-full vpn-server.vpn.ibm.com nopass
 ```
+
 Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vpn-server.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/vpn-server.vpn.ibm.com.key```
 <br/>
 
