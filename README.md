@@ -45,7 +45,14 @@ Para crear una autorización IAM sevice-to-service para su servidor VPN y certif
 5. Seleccione la opción ```All resources``` y verifique la casilla ```Writer```
 6. Dé clic en ```Authorize```
 
-
+**Gestión de certificados de cliente y servidor VPN**
+<br/>
+A continuación se usará [OpenVPN easy-rsa](https://github.com/OpenVPN/easy-rsa) para generar los certificados y posteriormente importarlos al certificate manager.
+1. Clone el repositorio Easy-RSA 3 en su carpeta local:
+```
+git clone https://github.com/OpenVPN/easy-rsa.git
+cd easy-rsa/easyrsa3
+```
 
 ## Referencias :mag:
 
