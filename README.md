@@ -53,6 +53,27 @@ A continuación se usará [OpenVPN easy-rsa](https://github.com/OpenVPN/easy-rsa
 git clone https://github.com/OpenVPN/easy-rsa.git
 cd easy-rsa/easyrsa3
 ```
+<br/>
+2. Cree un nuevo PKI y CA:
+```
+./easyrsa init-pki
+./easyrsa build-ca nopass
+```
+Verifique que el certificado CA esté generado en la ruta ```./pki/ca.crt```
+<br/>
+3. Genere un certificado de servidor VPN:
+```
+./easyrsa build-server-full vpn-server.vpn.ibm.com nopass
+```
+Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vpn-server.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/vpn-server.vpn.ibm.com.key```
+<br/>
+
+4. Genere un certificado de cliente VPN:
+```
+./easyrsa build-client-full client1.vpn.ibm.com nopass
+```
+Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vpn-server.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/vpn-server.vpn.ibm.com.key```
+<br/>
 
 ## Referencias :mag:
 
