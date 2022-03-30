@@ -59,7 +59,6 @@ cd easy-rsa/easyrsa3
 ```
 ./easyrsa init-pki
 ./easyrsa build-ca nopass
-
 ```
 <br/>
 
@@ -67,6 +66,7 @@ Verifique que el certificado CA esté generado en la ruta ```./pki/ca.crt```
 
 <br/>
 3. Genere un certificado de servidor VPN:
+
 ```
 ./easyrsa build-server-full vpn-server.vpn.ibm.com nopass
 ```
@@ -78,8 +78,19 @@ Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vp
 ```
 ./easyrsa build-client-full client1.vpn.ibm.com nopass
 ```
-Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vpn-server.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/vpn-server.vpn.ibm.com.key```
+Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/client1.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/client1.vpn.ibm.com.key```
 <br/>
+
+Para importar los certificados al certificate manager siga estos pasos:
+1. En el navegador Google Chrome navegue a la página de [Certificate Manager](https://cloud.ibm.com/catalog/services/certificate-manager), complete la información y dé clic en ```Create``` para crear una instancia.
+2. Diríjase a la página ```Your Certificates``` e importe el certificado según los siguientes pasos:
+
+   * Elija un nombre para su certificado, este no puede contener guiones, números ni mayúsculas (ej. vpcdemo)
+   * Dé clic al botón ```Browse``` y seleccione el archivo de certificado ```./pki/issued/vpn-server.vpn.ibm.com.crt```
+   * Dé clic al botón ```Browse``` y seleccione el archivo de llave privada ```./pki/private/vpn-server.vpn.ibm.com.key```
+   * Dé clic al botón ```Browse``` y seleccione el archivo de certificado intermedio ```./pki/ca.crt```
+   * Dé clic al botón ```Import```
+   
 
 ## Referencias :mag:
 
