@@ -7,20 +7,49 @@
 ## Tabla de contenido 📑
 
 1. [Requisitos](#Requisitos-newspaper)
+2. [Antes de empezar](#antes-de-empezar)
+   * [Configuración de la autenticación client-to-site](#configuraci%C3%B3n-de-la-autenticaci%C3%B3n-client-to-site)
+   * [Creación del grupo de acceso]()
+   * [Creación de la instancia certificate manager]()
+   * [Creación de la VPC y la subred]()
+3. [creación del servidor VPN]()
+   * [Crear servidor VPN]()
+   * [Validar servidor VPN]()
+   * [Crear ruta VPN]()
+   * [Configurar cliente de VPN]()
+4. [Conexión al servidor VPN]()
 11. [Referencias](#Referencias-mag)
 12. [Autores](#Autores-black_nib)
 <br />
 
 ## Requisitos :newspaper:
+- Contar con un sistema operativo Linux con el navegador Google Chrome instalado
 
-- Tener un servicio **[Kubernetes Cluster (IKS)](https://cloud.ibm.com/kubernetes/clusters)** disponible en la cuenta IBM Cloud.
+- Tener una cuenta de [IBM Cloud](https://cloud.ibm.com/)
 
 - :cloud: [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started&locale=en)
+
+- :satellite: [OpenVPN](https://openvpn.net/)
+- [Git](https://git-scm.com/downloads)
+
+## Antes de empezar
+Inicie sesión en su cuenta de [IBM Cloud](https://cloud.ibm.com/login).
+## Configuración de la autenticación client-to-site
+**Crear una autorización IAM sevice-to-service**
+<br/>
+Para crear una autorización IAM sevice-to-service para su servidor VPN y certificate manager siga los siguientes pasos:
+1. Desde la consola de IBM Cloud, vaya a la página [Manage Autorizations](https://cloud.ibm.com/iam/authorizations) y dé clic en el botón ```Crear```
+2. En el menú desplegable seleccione ```VPC Infrastructure Services``` y luego seleccione ```Resource based on selected attributes```
+3. Seleccione ```Resource type``` > ```Client VPN for VPC```
+4. En la opción Target Service seleccione ```Certificate Manager```
+5. Seleccione la opción ```All resources``` y verifique la casilla ```Writer```
+6. Dé clic en ```Authorize```
+
 
 
 ## Referencias :mag:
 
-- [Documentación](https://cloud.ibm.com/docs/vpc?topic=vpc-vpn-client-to-site-overview)
+- [Documentación de IBM Cloud: About client-to-site VPN servers (Beta)](https://cloud.ibm.com/docs/vpc?topic=vpc-vpn-client-to-site-overview)
 
 
 <br />
