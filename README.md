@@ -12,7 +12,7 @@
    * [Creación del grupo de acceso IAM y rol para conectarse al servidor VPN](#creación-del-grupo-de-acceso-iam-y-rol-para-conectarse-al-servidor-vpn)
    * [Creación de la VPC y la subred](#creación-de-la-vpc-y-la-subred)
 3. [creación del servidor VPN](#desplegar-servidor-VPN)
-   * [Crear servidor VPN]()
+   * [Crear servidor VPN](#Crear-servidor-VPN)
    * [Validar servidor VPN]()
    * [Crear ruta VPN]()
    * [Configurar cliente de VPN]()
@@ -247,7 +247,12 @@ Cuando ya tenga todos los campos configurados de click en el botón ```Crear ins
 
 
 ## Desplegar servidor VPN
-ads
+<br/>
+
+**Crear servidor VPN**
+
+
+
 
 ## Referencias :mag:
 
