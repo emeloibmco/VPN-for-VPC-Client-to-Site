@@ -249,7 +249,7 @@ Cuando ya tenga todos los campos configurados de click en el botón ```Crear ins
 ## Desplegar servidor VPN
 
 
-## <h3>Crear servidor VPN</h3>
+* ## <h3>Crear servidor VPN</h3>
 
 
 
