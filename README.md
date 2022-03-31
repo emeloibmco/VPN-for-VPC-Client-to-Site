@@ -11,7 +11,7 @@
    * [Configuración de la autenticación client-to-site e importación de certificados al Certificate Manager](#configuraci%C3%B3n-de-la-autenticaci%C3%B3n-client-to-site)
    * [Creación del grupo de acceso IAM y rol para conectarse al servidor VPN](#creación-del-grupo-de-acceso-iam-y-rol-para-conectarse-al-servidor-vpn)
    * [Creación de la VPC y la subred](#creación-de-la-vpc-y-la-subred)
-3. [creación del servidor VPN]()
+3. [creación del servidor VPN](#desplegar-servidor-VPN)
    * [Crear servidor VPN]()
    * [Validar servidor VPN]()
    * [Crear ruta VPN]()
@@ -94,7 +94,7 @@ Para importar los certificados al certificate manager siga estos pasos:
 Si el certificado es usado como certificado de servidor VPN, usted debe subir los archivos ```Certificate file```, ```Private key file``` e ```Intermediate certificate file```. si el certificado es usado como certificado de cliente VPN para autenticar el cliente, usted debe subir los archivos ```Certificate file``` e ```Intermediate certificate file```.
 <br/>
 
-**Ordenar un certificado usando Certificate Manager NOTA: creo que esto no lo hicimos**
+**Ordenar un certificado usando Certificate Manager NOTA: creo que esto no lo hicimos Nota 2: No lo hicimos porque es alternativo a generar los certificados, los generas o los ordenas, no los dos al tiempo**
 <br/>
 
 Usted puede usar IBM Cloud Certificate Manager para ordenar un certificado público SSL/TLS como certificado de servidor VPN. Certificate Manager solo almacena certificados intermedios, por lo cual usted necesitará los root certificates de Let's Encrypt, guardados como archivos ```.pem```. Los dos archivos requeridos puede encontrarlos en [https://letsencrypt.org/certs/lets-encrypt-r3.pem](https://letsencrypt.org/certs/lets-encrypt-r3.pem) y [https://letsencrypt.org/certs/isrgrootx1.pem](https://letsencrypt.org/certs/isrgrootx1.pem). Cuando descargue y actualice el certificado de cliente VPN, use este root certificate para reemplazar la sección ```<ca>``` en el perfil de cliente.
@@ -103,7 +103,7 @@ Usted puede usar IBM Cloud Certificate Manager para ordenar un certificado públ
 Los certificados ordenados son certificados públicos SSL/TLS y deben ser usados como certificados de servidor VPN únicamente. No pueden ser usados para autenticar los clientes VPN.
 <br/>
 
-**Ubicar el certificado CRN NOTA: esto tampoco**
+**Ubicar el certificado CRN NOTA: esto tampoco NOTA 2: se hace en caso de ordener certificados**
 <br/>
 
 Al configurar la autenticación de un servidor VPN client-to-site usando la UI, usted puede especificar el Certificate Manager y el certificado SSL, o el CRN del certificado. Esto se puede hacer si usted no tiene acceso a la instancia de Certificate Manager. Tenga en cuenta que usted debe ingresar el CRN si está usando la API para crear el servidor VPN client-to-site.
@@ -114,7 +114,7 @@ Para encontrar el CRN del certificado, siga estos pasos:
 2. Dé clic para expandir ```Services and software``` y posteriormente seleccione el Certificate Manager del que desea obtener el CRN.
 3. Seleccione cualquier parte en esa fila de la tabla para abrir el panel lateral de detalles. El CRN del certificado se encuentra listado allí.
 
-**Configuración de IDs de usuario y contraseñas NOTA: no lo hicimos**
+**Configuración de IDs de usuario y contraseñas NOTA: no lo hicimos, NOTA2: no lo hicimos porque intentamos conectarnos al vpn con certificados**
 <br/>
 
 Para configurar la autenticación en dos factores para usuarios de cliente VPN siga este proceso:
@@ -246,7 +246,8 @@ Cuando ya tenga todos los campos configurados de click en el botón ```Crear ins
 <br />
 
 
-
+## Desplegar servidor VPN
+ads
 
 ## Referencias :mag:
 
