@@ -247,9 +247,14 @@ Cuando ya tenga todos los campos configurados de click en el botón ```Crear ins
 
 
 ## Desplegar servidor VPN
-
-
+Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructura VPC*
+<img href="screens/VPC.png">
 * ## <h3>Crear servidor VPN</h3>
+     Ahora en seleccionamos el apartado de VPN y damos click en el boton de crear.
+     <img href="screens/vpn-crear">
+
+     Luego seleccionamos el tipo de VPN que deseamos, en este caso Client-to-site-server
+     <img href="screens/vpn-type">
 
 
 
