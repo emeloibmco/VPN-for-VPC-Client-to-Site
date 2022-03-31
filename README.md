@@ -16,9 +16,9 @@
    * [Validar servidor VPN](#validar-servidor-vpn)
    * [Crear ruta VPN](#crear-ruta-vpn)
    * [Configurar cliente de VPN](#configurar-el-cliente-de-vpn)
-4. [Conexión al servidor VPN]()
-11. [Referencias](#Referencias-mag)
-12. [Autores](#Autores-black_nib)
+4. [Conexión al servidor VPN](#conexión-al-servidor-vpn)
+5. [Referencias](#Referencias-mag)
+6. [Autores](#Autores-black_nib)
 <br />
 
 ## Requisitos :newspaper:
@@ -94,7 +94,7 @@ Para importar los certificados al certificate manager siga estos pasos:
 Si el certificado es usado como certificado de servidor VPN, usted debe subir los archivos ```Certificate file```, ```Private key file``` e ```Intermediate certificate file```. si el certificado es usado como certificado de cliente VPN para autenticar el cliente, usted debe subir los archivos ```Certificate file``` e ```Intermediate certificate file```.
 <br/>
 
-**Ordenar un certificado usando Certificate Manager NOTA: creo que esto no lo hicimos Nota 2: No lo hicimos porque es alternativo a generar los certificados, los generas o los ordenas, no los dos al tiempo**
+**Ordenar un certificado usando Certificate Manager (Opción alternativa a crearlo como indica la sección anterior)**
 <br/>
 
 Usted puede usar IBM Cloud Certificate Manager para ordenar un certificado público SSL/TLS como certificado de servidor VPN. Certificate Manager solo almacena certificados intermedios, por lo cual usted necesitará los root certificates de Let's Encrypt, guardados como archivos ```.pem```. Los dos archivos requeridos puede encontrarlos en [https://letsencrypt.org/certs/lets-encrypt-r3.pem](https://letsencrypt.org/certs/lets-encrypt-r3.pem) y [https://letsencrypt.org/certs/isrgrootx1.pem](https://letsencrypt.org/certs/isrgrootx1.pem). Cuando descargue y actualice el certificado de cliente VPN, use este root certificate para reemplazar la sección ```<ca>``` en el perfil de cliente.
@@ -103,7 +103,7 @@ Usted puede usar IBM Cloud Certificate Manager para ordenar un certificado públ
 Los certificados ordenados son certificados públicos SSL/TLS y deben ser usados como certificados de servidor VPN únicamente. No pueden ser usados para autenticar los clientes VPN.
 <br/>
 
-**Ubicar el certificado CRN NOTA: esto tampoco NOTA 2: se hace en caso de ordener certificados**
+*Ubicar el certificado CRN*
 <br/>
 
 Al configurar la autenticación de un servidor VPN client-to-site usando la UI, usted puede especificar el Certificate Manager y el certificado SSL, o el CRN del certificado. Esto se puede hacer si usted no tiene acceso a la instancia de Certificate Manager. Tenga en cuenta que usted debe ingresar el CRN si está usando la API para crear el servidor VPN client-to-site.
@@ -113,23 +113,6 @@ Para encontrar el CRN del certificado, siga estos pasos:
 1. En la [consola de IBM Cloud](https://cloud.ibm.com/vpc-ext) Vaya al ícono de menú y seleccione ```Resource List```
 2. Dé clic para expandir ```Services and software``` y posteriormente seleccione el Certificate Manager del que desea obtener el CRN.
 3. Seleccione cualquier parte en esa fila de la tabla para abrir el panel lateral de detalles. El CRN del certificado se encuentra listado allí.
-
-**Configuración de IDs de usuario y contraseñas NOTA: no lo hicimos, NOTA2: no lo hicimos porque intentamos conectarnos al vpn con certificados**
-<br/>
-
-Para configurar la autenticación en dos factores para usuarios de cliente VPN siga este proceso:
-
-1. El administrador de la VPN invita al usuario del cliente VPN a la cuenta donde reside el servidor VPN.
-
-2. El administrador de la VPN asigna el permiso IAM de usuario de cliente VPN, esto permite al usuario conectarse al servidor VPN. Para más información visite [Creating an IAM access group and granting the role to connect to the VPN server.](https://cloud.ibm.com/docs/vpc?topic=vpc-create-iam-access-group)
-
-3. El usuario de cliente VPN abre la siguiente dirección web para generar una contraseña para su ID de usuario:
-
-```
-https://iam.cloud.ibm.com/identity/passcode
-```
-
-4. El usuario de cliente VPN ingresa su contraseña en el cliente de OpenVPN e inicia la conexión al servidor VPN. Para más información vea [Setting up a client VPN environment and connecting to a VPN server.](https://cloud.ibm.com/docs/vpc?topic=vpc-vpn-client-environment-setup)
 
 ## Creación del grupo de acceso IAM y rol para conectarse al servidor VPN
 
@@ -322,6 +305,27 @@ Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructu
    ![image](screens/config-cliente-profile.png)
 
    Para editar el perfil del cliente puede usar un editor de codigo como *VS CODE* o el de su preferencia y agregar el certificado y su key al final del archivo perfil del cliente.
+
+   <br/>
+   Una opción alternativa para conectarse al servidor VPN es por medio de un ID de usuario y una contraseña. Para configurar la autenticación en dos factores para usuarios de cliente VPN siga este proceso:
+
+   * El administrador de la VPN invita al usuario del cliente VPN a la cuenta donde reside el servidor VPN.
+
+   * El administrador de la VPN asigna el permiso IAM de usuario de cliente VPN, esto permite al usuario conectarse al servidor VPN. Para más información visite [Creating an IAM access group and granting the role to connect to the VPN server.](https://cloud.ibm.com/docs/vpc?topic=vpc-create-iam-access-group)
+
+   * El usuario de cliente VPN abre la siguiente dirección web para generar una contraseña para su ID de usuario:
+
+   ```
+   https://iam.cloud.ibm.com/identity/passcode
+   ```
+
+   * El usuario de cliente VPN ingresa su contraseña en el cliente de OpenVPN e inicia la conexión al servidor VPN. Para más información vea [Setting up a client VPN environment and connecting to a VPN server.](https://cloud.ibm.com/docs/vpc?topic=vpc-vpn-client-environment-setup)
+   
+   <br/>
+
+## Conexión al servidor VPN
+
+Finalmente, para realizar la conexión al servidor VPN use el cliente OpenVPN y el archivo de configuración. Para verificar que se hizo la conexión adecuadamente, abra la página de detalles del servidor VPN. Luego verifique en la sección de clientes todos los clientes de VPN que se han conectado en a última hora.
 
 ## Referencias :mag:
 
