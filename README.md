@@ -317,7 +317,7 @@ Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructu
 
    - **Distribuya el archivo de perfil de cliente:** Envie el perfil de configuracion a los usuarios de la VPN a traves de un canal seguro.
 
-   -**Configurar el archivo de perfil de cliente:** Los clientes de la VPN deben editar el perfil de cliente, para esto deben tener los certificados de la VPN los cuales deben ser enviados por un canal seguro, estos certificados deben ser añadidos al perfil del cliente de la siguiente manera:
+   - **Configurar el archivo de perfil de cliente:** Los clientes de la VPN deben editar el perfil de cliente, para esto deben tener los certificados de la VPN los cuales deben ser enviados por un canal seguro, estos certificados deben ser añadidos al perfil del cliente de la siguiente manera:
 
    ![image](screens/config-cliente-profile.png)
 
