@@ -248,16 +248,52 @@ Cuando ya tenga todos los campos configurados de click en el botón ```Crear ins
 
 ## Desplegar servidor VPN
 Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructura VPC*
-<img href="screens/VPC.png">
-* ## <h3>Crear servidor VPN</h3>
-     Ahora en seleccionamos el apartado de VPN y damos click en el boton de crear.
-     <img href="screens/vpn-crear">
 
-     Luego seleccionamos el tipo de VPN que deseamos, en este caso Client-to-site-server
-     <img href="screens/vpn-type">
+![image](screens/VPC.png)
+## <h3>Crear servidor VPN</h3>
+   Ahora en seleccionamos el apartado de VPN y damos click en el boton de crear.
 
+   ![image](screens/vpn-crear.png)
 
+   Luego seleccionamos el tipo de VPN que deseamos, en este caso *Client-to-site-server*.
 
+   ![image](screens/vpn-type.png)
+
+   En la seccion de detalles, se debe especificar la siguiente informacion:
+
+   - **Nombre del servidor de VPN:** Escoge un nombre para tu servidor VPN, ejemplo: my-vpn-server.<br/>
+   - **El grupo de recursos:** El grupo de recursos que seleccionas debe ser el mismo que en donde se encuentra la VPC.
+   - **Region:** La misma region donde se encuentra la VPC se usara para el servidor de VPN.
+   - **Virtual private cloud:** Escoger la VPC para el servidor de VPN.
+   - **Client IPv4 address pool:** Ingrese un rango CIDR. Al cliente se le asigna una IP de este rango para su sesion.
+
+   ![image](screens/vpn-details.png)
+
+   Ahora en la seccion de subredes, se debe seleccionar la modalidad del servidor VPN:
+
+   - **Seleccionar la modalidad del servidor VPN:**
+      - **Modo de alta disponibilidad:** Este modo despliega el servidor en dos subredes que se encuentran ubicadas en diferentes zonas.Ideal para los despliegues y soluciones donde el acceso VPN de el cliente es crucial.
+      -**Modalidad autonoma:** Este modo despliega el servidor de VPN en una subred en una sola zona. Ideal para despliegas en una sola zona.
+
+      ![image](screens/vpn-subnets.png)
+   - **Seccion de autenticacion:** 
+      - **Autenticacion del servidor:** Selecciona el gestor de certificados y luego el certificado SSL del servidor.
+
+      ![image](screens/vpn-server-authentication.png)
+
+      - **Autenticacion del cliente:** Se debe seleccionar que configuracion usara el cliente para autenticarse en el servidor, ya sea a traves de certificados o usando un ID y passcode, o ambas si se desea.
+
+      ![image](screens/vpn-client-authentication.png)
+
+   - **Seccion grupos de seguridad:** Debes seleccionar al menos un grupo de seguridad.Tambien puede configurar mas grupos de seguridad si lo desea.
+
+   ![image](screens/vpn-security-groups.png)
+
+   - **Configuracion adicional:** Mantenga la configuracion recomendada.
+
+   ![image](screens/vpn-additional-config.png)
+      
+   
 
 ## Referencias :mag:
 
