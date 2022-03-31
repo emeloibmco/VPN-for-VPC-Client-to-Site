@@ -11,11 +11,11 @@
    * [Configuración de la autenticación client-to-site e importación de certificados al Certificate Manager](#configuraci%C3%B3n-de-la-autenticaci%C3%B3n-client-to-site)
    * [Creación del grupo de acceso IAM y rol para conectarse al servidor VPN](#creación-del-grupo-de-acceso-iam-y-rol-para-conectarse-al-servidor-vpn)
    * [Creación de la VPC y la subred](#creación-de-la-vpc-y-la-subred)
-3. [creación del servidor VPN](#desplegar-servidor-VPN)
-   * [Crear servidor VPN](#crear-servidor-VPN)
-   * [Validar servidor VPN]()
-   * [Crear ruta VPN]()
-   * [Configurar cliente de VPN]()
+3. [creación del servidor VPN](#desplegar-servidor-vpn)
+   * [Crear servidor VPN](#h3crear-servidor-vpnh3)
+   * [Validar servidor VPN](#validar-servidor-vpn)
+   * [Crear ruta VPN](#crear-ruta-vpn)
+   * [Configurar cliente de VPN](#configurar-el-cliente-de-vpn)
 4. [Conexión al servidor VPN]()
 11. [Referencias](#Referencias-mag)
 12. [Autores](#Autores-black_nib)
@@ -263,7 +263,7 @@ Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructu
 
    - **Nombre del servidor de VPN:** Escoge un nombre para tu servidor VPN, ejemplo: my-vpn-server.<br/>
    - **El grupo de recursos:** El grupo de recursos que seleccionas debe ser el mismo que en donde se encuentra la VPC.
-   - **Region:** La misma region donde se encuentra la VPC se usara para el servidor de VPN.
+   - **Región:** La misma region donde se encuentra la VPC se usara para el servidor de VPN.
    - **Virtual private cloud:** Escoger la VPC para el servidor de VPN.
    - **Client IPv4 address pool:** Ingrese un rango CIDR. Al cliente se le asigna una IP de este rango para su sesion.
 
@@ -276,24 +276,52 @@ Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructu
       -**Modalidad autonoma:** Este modo despliega el servidor de VPN en una subred en una sola zona. Ideal para despliegas en una sola zona.
 
       ![image](screens/vpn-subnets.png)
-   - **Seccion de autenticacion:** 
+   - **Seccion de autenticación:** 
       - **Autenticacion del servidor:** Selecciona el gestor de certificados y luego el certificado SSL del servidor.
 
       ![image](screens/vpn-server-authentication.png)
 
-      - **Autenticacion del cliente:** Se debe seleccionar que configuracion usara el cliente para autenticarse en el servidor, ya sea a traves de certificados o usando un ID y passcode, o ambas si se desea.
+      - **Autenticación del cliente:** Se debe seleccionar que configuracion usara el cliente para autenticarse en el servidor, ya sea a traves de certificados o usando un ID y passcode, o ambas si se desea.
 
       ![image](screens/vpn-client-authentication.png)
 
-   - **Seccion grupos de seguridad:** Debes seleccionar al menos un grupo de seguridad.Tambien puede configurar mas grupos de seguridad si lo desea.
+   - **Sección grupos de seguridad:** Debes seleccionar al menos un grupo de seguridad.Tambien puede configurar mas grupos de seguridad si lo desea.
 
    ![image](screens/vpn-security-groups.png)
 
-   - **Configuracion adicional:** Mantenga la configuracion recomendada.
+   - **Configuración adicional:** Mantenga la configuracion recomendada.
 
    ![image](screens/vpn-additional-config.png)
       
-   
+## Validar servidor VPN
+   Para asegurarse de que el servidor VPN se desplego correctamente espere unos minutos y dirigase al apartado de VPN y en la seccion *client-to-site-servers* y asegurese de que el estado del servidor sea *Estable* y el *Estado* sea *Buen estado*.
+
+   ![image](screens/vpn-status.png)
+## Crear ruta VPN
+   Ingrese a su servidor de VPN y en la pestaña de *Rutas de servidor VPN* de click en el boton *Crear*. 
+
+   ![image](screens/vpn-routes.png)
+
+   Luego asignele un nombre a la ruta y escoga rango CIDR para la red destino:
+      - **Para acceso a internet:** Elija 0.0.0.0/0
+      - **Para la subred de la VPC:** Ingrese el CIDR de la subred de la VPC.
+
+   Por ultimo escoja la accion de la ruta, en este caso sera *Entregar* y finalice dando click en el boton crear.
+
+   ![image](screens/vpn-config-route.png)
+
+## Configurar el cliente de VPN
+   - **Ingrese al servidor de VPN:** En la pestaña cliente de click *Descargar perfil de cliente*. Descargara un archivo de configuracion llamado *<vpn_server>.ovpn*
+
+   ![image](screens/vpn-client.png)
+
+   - **Distribuya el archivo de perfil de cliente:** Envie el perfil de configuracion a los usuarios de la VPN a traves de un canal seguro.
+
+   -**Configurar el archivo de perfil de cliente:** Los clientes de la VPN deben editar el perfil de cliente, para esto deben tener los certificados de la VPN los cuales deben ser enviados por un canal seguro, estos certificados deben ser añadidos al perfil del cliente de la siguiente manera:
+
+   ![image](screens/config-cliente-profile.png)
+
+   Para editar el perfil del cliente puede usar un editor de codigo como *VS CODE* o el de su preferencia y agregar el certificado y su key al final del archivo perfil del cliente.
 
 ## Referencias :mag:
 
