@@ -128,19 +128,19 @@ Para crear un grupo de acceso IAM y permitir al rol de usuario conectarse al ser
 6. Verifique el panel de resumen y dé clic en ```Assign```.
 7. Dé clic en la pestaña ```Users``` y posteriormente en ```Add users``` para agregar usuarios al nuevo grupo de acceso.
 
-## Creación de la VPC y la subred
+## Creación de la VPC y la subnet
 
 **Creación de la VPC**
 <br/>
 Para crear una VPC en su cuenta de IBM Cloud siga los pasos que se indican a continuación:
 
-1. Dé click en el ```Menú de Navegación``` y seleccione la pestaña ```Infraestructura VPC```.
+1. Dé click en el Menú de Navegación y seleccione la pestaña ```VPC Infrastructure```.
 
-2. En la sección de ```Red``` seleccione la opción ```VPCs``` y posteriormente de click en el botón ```Crear```. Una vez le aparezca la ventana para la configuración y creación de la *VPC*, complete lo siguiente:
+2. En la sección de ```Network``` seleccione la opción ```VPCs``` y posteriormente de click en el botón ```Create```. Una vez le aparezca la ventana para la configuración y creación de la *VPC*, complete lo siguiente:
 
-* ```Nombre```: asigne un nombre exclusivo para la *VPC*.
-* ```Grupo de recursos```: seleccione el grupo de recursos en el cual va a trabajar.
-* ```Ubicación```: seleccione la ubicación en la cual desea implementar la *VPC*.
+* ```Name```: asigne un nombre exclusivo para la *VPC*.
+* ```Resource Group```: seleccione el grupo de recursos en el cual va a trabajar.
+* ```Location```: seleccione la ubicación en la cual desea implementar la *VPC*.
 
 
 | NAME | DISPLAY NAME |
@@ -158,32 +158,32 @@ Para crear una VPC en su cuenta de IBM Cloud siga los pasos que se indican a con
 | us-east       | Washington DC   |
 | br-sao        | Sao Paulo       |
 
-* ```Grupo de seguridad predeterminado```: deje seleccionadas las opciones *Permitir SSH* y *Permitir ping*.
-* ```Acceso clásico```: deje el campo SIN seleccionar.
-* ```Prefijos de dirección predeterminados```: deje el campo SIN seleccionar, ya que posteriormente se creara la subred en la que se va a trabajar.
+* ```Default security group```: deje seleccionadas las opciones *Permitir SSH* y *Permitir ping*.
+* ```Classic access```: deje el campo SIN seleccionar.
+* ```Default address prefixes```: deje el campo SIN seleccionar, ya que posteriormente se creará la subred en la que se va a trabajar.
 
-Cuando ya tenga todos los campos configurados de click en el botón ```Crear nube privada virtual```.
+Cuando ya tenga todos los campos configurados dé click en el botón ```Create virtual private cloud```.
 
 3. Espere unos minutos mientras la *VPC* aparece en estado disponible y asegúrese de tener seleccionada la región en la cual la implementó.
-4. Una vez haya sido aprovisonada la VPC, de click en el nombre e ingrese a la pestaña ```Prefijos de dirección```. En dicha pestaña, de click en ```Crear``` e ingrese la dirección IP que desee junto con la máscara.
+4. Una vez haya sido aprovisonada la VPC, dé click en el nombre e ingrese a la pestaña ```Address prefixes```. En dicha pestaña, de click en ```Create``` e ingrese la dirección IP que desee junto con la máscara.
 
 > NOTA: Puede utilizar la IP y máscara sugeridas en las subnets creadas por defecto cuando se estaba aprovisionando la VPC.
 
 <br />
 
-**Creación de la subnet NOTA: también está en español**
+**Creación de la subnet**
 <br />
-El siguiente paso consiste en crear un Subred en la *VPC*. Para ello, en la sección de ```Red``` seleccione la opción ```Subredes``` y de click en el botón ```Crear```. Una vez le aparezca la ventana para la configuración y creación de la subred, complete lo siguiente:
+El siguiente paso consiste en crear una Subnet en la *VPC*. Para ello, en la sección ```Network``` seleccione la opción ```Subnets``` y dé click en el botón ```Create```. Una vez le aparezca la ventana para la configuración y creación de la subnet, complete lo siguiente:
 
-* ```Nombre```: asigne un nombre exclusivo para la subred.
-* ```Grupo de recursos```: seleccione el grupo de recursos en el cual va a trabajar (el mismo seleccionado en la creación de la *VPC*).
-* ```Ubicación```: seleccione la ubicación en la cual desea implementar la subred (la misma seleccionada en la creación de la *VPC*).
-* ```Nube privada virtual```: seleccione la *VPC* que creó anteriormente.
+* ```Name```: asigne un nombre exclusivo para la subnet.
+* ```Resource group```: seleccione el grupo de recursos en el cual va a trabajar (el mismo seleccionado en la creación de la *VPC*).
+* ```Location```: seleccione la ubicación en la cual desea implementar la subnet (la misma seleccionada en la creación de la *VPC*).
+* ```Virtual private cloud```: seleccione la *VPC* que creó anteriormente.
 * Los demás parámetros no los modifique, deje los valores establecidos por defecto.
 
-Cuando ya tenga todos los campos configurados de click en el botón ```Crear subred```.
+Cuando ya tenga todos los campos configurados dé click en el botón ```Create subnet```.
 
-6. Espere unos minutos mientras la subred aparece en estado disponible y asegúrese de tener seleccionada la región en la cual la implementó.
+6. Espere unos minutos mientras la subnet aparece en estado disponible y asegúrese de tener seleccionada la región en la cual la implementó.
 
 <br />
 
