@@ -8,8 +8,8 @@
 
 1. [Requisitos](#Requisitos-newspaper)
 2. [Antes de empezar](#antes-de-empezar)
-   * [Configuración de la autenticación client-to-site e importación de certificados al Certificate Manager](#configuraci%C3%B3n-de-la-autenticaci%C3%B3n-client-to-site)
-   * [Creación del grupo de acceso IAM y rol para conectarse al servidor VPN](#creación-del-grupo-de-acceso-iam-y-rol-para-conectarse-al-servidor-vpn)
+   * [Configuración de la autenticación client-to-site e importación de certificados al Certificate Manager](#configuración-de-la-autenticación-client-to-site-gear)
+   * [Creación del grupo de acceso IAM y rol para conectarse al servidor VPN](#creación-del-grupo-de-acceso-iam-y-rol-para-conectarse-al-servidor-vpn-oldkey)
    * [Creación de la VPC y la subred](#creación-de-la-vpc-y-la-subred)
 3. [creación del servidor VPN](#desplegar-servidor-vpn)
    * [Crear servidor VPN](#h3crear-servidor-vpnh3)
@@ -33,11 +33,11 @@
 
 ## Antes de empezar
 Inicie sesión en su cuenta de [IBM Cloud](https://cloud.ibm.com/login).
-## Configuración de la autenticación client-to-site
+## Configuración de la autenticación client-to-site :gear:
 **Crear una autorización IAM sevice-to-service**
 <br/>
 Para crear una autorización IAM sevice-to-service para su servidor VPN y certificate manager siga los siguientes pasos:
-1. Desde la consola de IBM Cloud, vaya a la página [Manage Autorizations](https://cloud.ibm.com/iam/authorizations) y dé clic en el botón ```Crear```
+1. Desde la consola de IBM Cloud, vaya a la página [Manage Autorizations](https://cloud.ibm.com/iam/authorizations) y dé clic en el botón ```Create```
 2. En el menú desplegable seleccione ```VPC Infrastructure Services``` y luego seleccione ```Resource based on selected attributes```
 3. Seleccione ```Resource type``` > ```Client VPN for VPC```
 4. En la opción Target Service seleccione ```Certificate Manager```
@@ -46,24 +46,27 @@ Para crear una autorización IAM sevice-to-service para su servidor VPN y certif
 
 **Gestión de certificados de cliente y servidor VPN**
 <br/>
+Para la gestión de certificados hay dos opciones, usar OpenVPN para generar los certificados u ordenar un certificado usando Certificate Manager.
+
+**Opción 1. Generación de certificados usando OpenVPN**
+<br/>
 A continuación se usará [OpenVPN easy-rsa](https://github.com/OpenVPN/easy-rsa) para generar los certificados y posteriormente importarlos al certificate manager.
 1. Clone el repositorio Easy-RSA 3 en su carpeta local:
+
 ```
 git clone https://github.com/OpenVPN/easy-rsa.git
 cd easy-rsa/easyrsa3
 ```
-<br/>
+
 2. Cree un nuevo PKI y CA:
 
 ```
 ./easyrsa init-pki
 ./easyrsa build-ca nopass
 ```
-<br/>
 
 Verifique que el certificado CA esté generado en la ruta ```./pki/ca.crt```
 
-<br/>
 3. Genere un certificado de servidor VPN:
 
 ```
@@ -71,7 +74,6 @@ Verifique que el certificado CA esté generado en la ruta ```./pki/ca.crt```
 ```
 
 Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vpn-server.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/vpn-server.vpn.ibm.com.key```
-<br/>
 
 4. Genere un certificado de cliente VPN:
 ```
@@ -81,7 +83,7 @@ Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/cl
 <br/>
 
 Para importar los certificados al certificate manager siga estos pasos:
-1. En el navegador Google Chrome navegue a la página de [Certificate Manager](https://cloud.ibm.com/catalog/services/certificate-manager), complete la información y dé clic en ```Create``` para crear una instancia.
+1. En el navegador Google Chrome diríjase a la página de [Certificate Manager](https://cloud.ibm.com/catalog/services/certificate-manager), complete la información y dé clic en ```Create``` para crear una instancia.
 2. Diríjase a la página ```Your Certificates``` e importe el certificado según los siguientes pasos:
 
    * Elija un nombre para su certificado, este no puede contener guiones, números ni mayúsculas (ej. vpcdemo)
@@ -91,16 +93,16 @@ Para importar los certificados al certificate manager siga estos pasos:
    * Dé clic al botón ```Import```
    <br/>
 
-Si el certificado es usado como certificado de servidor VPN, usted debe subir los archivos ```Certificate file```, ```Private key file``` e ```Intermediate certificate file```. si el certificado es usado como certificado de cliente VPN para autenticar el cliente, usted debe subir los archivos ```Certificate file``` e ```Intermediate certificate file```.
+Si el certificado es usado como certificado de servidor VPN, usted debe subir los archivos ```Certificate file```, ```Private key file``` e ```Intermediate certificate file```. Si el certificado es usado como certificado de cliente VPN para autenticar el cliente, usted debe subir los archivos ```Certificate file``` e ```Intermediate certificate file```.
 <br/>
 
-**Ordenar un certificado usando Certificate Manager (Opción alternativa a crearlo como indica la sección anterior)**
+**Opción 2. Ordenar un certificado usando Certificate Manager**
 <br/>
 
 Usted puede usar IBM Cloud Certificate Manager para ordenar un certificado público SSL/TLS como certificado de servidor VPN. Certificate Manager solo almacena certificados intermedios, por lo cual usted necesitará los root certificates de Let's Encrypt, guardados como archivos ```.pem```. Los dos archivos requeridos puede encontrarlos en [https://letsencrypt.org/certs/lets-encrypt-r3.pem](https://letsencrypt.org/certs/lets-encrypt-r3.pem) y [https://letsencrypt.org/certs/isrgrootx1.pem](https://letsencrypt.org/certs/isrgrootx1.pem). Cuando descargue y actualice el certificado de cliente VPN, use este root certificate para reemplazar la sección ```<ca>``` en el perfil de cliente.
 <br/>
 
-Los certificados ordenados son certificados públicos SSL/TLS y deben ser usados como certificados de servidor VPN únicamente. No pueden ser usados para autenticar los clientes VPN.
+Los certificados ordenados son certificados públicos SSL/TLS y deben ser usados como certificados de servidor VPN únicamente. No deben ser usados para autenticar los clientes VPN.
 <br/>
 
 *Ubicar el certificado CRN*
@@ -114,7 +116,7 @@ Para encontrar el CRN del certificado, siga estos pasos:
 2. Dé clic para expandir ```Services and software``` y posteriormente seleccione el Certificate Manager del que desea obtener el CRN.
 3. Seleccione cualquier parte en esa fila de la tabla para abrir el panel lateral de detalles. El CRN del certificado se encuentra listado allí.
 
-## Creación del grupo de acceso IAM y rol para conectarse al servidor VPN
+## Creación del grupo de acceso IAM y rol para conectarse al servidor VPN :old_key:
 
 Para crear un grupo de acceso IAM y permitir al rol de usuario conectarse al servidor VPN, siga estos pasos:
 
@@ -128,7 +130,7 @@ Para crear un grupo de acceso IAM y permitir al rol de usuario conectarse al ser
 
 ## Creación de la VPC y la subred
 
-**Creación de la VPC NOTA: está en español**
+**Creación de la VPC**
 <br/>
 Para crear una VPC en su cuenta de IBM Cloud siga los pasos que se indican a continuación:
 
