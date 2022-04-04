@@ -230,12 +230,13 @@ Cuando ya tenga todos los campos configurados dé click en el botón ```Create v
 
 <br />
 
-
 ## Desplegar servidor VPN
 Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructura VPC*
 
 <img src="screens/VPC.png" alt="VPC" width="200"/>
-## <h3>Crear servidor VPN</h3>
+
+## Crear servidor VPN
+
    Ahora seleccione el apartado de VPN y dé click en el botón de crear.
 
    ![image](screens/vpn-crear.png)
@@ -297,9 +298,7 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
 
 ## Configurar el cliente de VPN
    - **Ingrese al servidor de VPN:** En la pestaña cliente dé click *Descargar perfil de cliente*. Descargará un archivo de configuración llamado *<vpn_server>.ovpn*
-
    ![image](screens/vpn-client.png)
-
    - **Distribuya el archivo de perfil de cliente:** Envíe el perfil de configuración a los usuarios de la VPN a través de un canal seguro.
 
    - **Configurar el archivo de perfil de cliente:** Los clientes de la VPN deben editar el perfil de cliente, para esto deben tener los certificados de la VPN, los cuales deben ser enviados por un canal seguro, estos certificados deben ser añadidos al perfil del cliente de la siguiente manera:
