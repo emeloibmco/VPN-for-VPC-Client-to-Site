@@ -187,20 +187,20 @@ Cuando ya tenga todos los campos configurados dé click en el botón ```Create s
 
 <br />
 
-**Configurar claves SSH :closed_lock_with_key: NOTA: está en español**
+## Configurar claves SSH :closed_lock_with_key:
 <br />
-Para poder desplegar una *VSI* en *VPC* es necesario realizar la respectiva configuración para las claves *SSH*. En base a esto, realice lo siguiente:
+Para poder desplegar una *VSI* en *VPC* es necesario realizar la respectiva configuración para las claves *SSH*. Con base en esto, realice lo siguiente:
 
 1. Para generar una clave *SSH* acceda al *IBM Cloud Shell* y coloque el comando:
 ```
 ssh-keygen -t rsa -C "user_id"
 ```
 
-2. Al colocar el comando anterior, en la consola se pide que especifique la ubicación, en este caso oprima la tecla Enter para que se guarde en la ubicación sugerida. Posteriormente, cuando se pida la ```Passphrase``` coloque una constraseña que pueda recordar o guardela, ya que se utilizará más adelante.
+2. Al colocar el comando anterior, en la consola se pide que especifique la ubicación, en este caso oprima la tecla Enter para que se guarde en la ubicación sugerida. Posteriormente, cuando se pida la ```Passphrase``` coloque una constraseña que pueda recordar o guárdela, ya que se utilizará más adelante.
 
 3. Muévase con el comando ```cd .ssh``` a la carpeta donde están los archivos ```id_rsa.pub``` y ```id_rsa```. Estos archivos contienen las claves públicas y privadas respectivamente. 
 
-4. Visualice la clave pública, ya que la necesitara para la creación de la *VSI*. Utilice el comando:
+4. Visualice la clave pública, ya que la necesitará para la creación de la *VSI*. Utilice el comando:
 ```
 cat id_rsa.pub
 ```
@@ -210,21 +210,21 @@ cat id_rsa.pub
 
 **Desplegar VSI en VPC**
 <br/>
-Un vez ha configurado las claves *SSH* proceda con la creación de la *VSI* Linux en *VPC*. Complete los siguientes pasos:
+Una vez ha configurado las claves *SSH* proceda con la creación de la *VSI* Linux en *VPC*. Complete los siguientes pasos:
 
-1. En la sección de ```Computación``` seleccione la opción ```Instancias de Servidor Virtual``` y posteriormente de click en el botón ```Crear```. Una vez le aparezca la ventana para la configuración y creación de la *VSI*, complete lo siguiente:
+1. Entre al menú desplegable y seleccione ```VPC Infrastructure```. En la sección de ```Compute``` seleccione la opción ```Virtual Server instances``` y posteriormente dé click en el botón ```Create```. Una vez le aparezca la ventana para la configuración y creación de la *VSI*, complete lo siguiente:
 
-* ```Nombre```: asigne un nombre exclusivo para la *VSI*.
-* ```Grupo de recursos```: seleccione el grupo de recursos en el cual va a trabajar (el mismo seleccionado en la creación de la *VPC*).
-* ```Ubicación```: seleccione la ubicación en la cual desea implementar la subred (la misma seleccionada en la creación de la *VPC*).
-* ```Tipo de servidor virtual```: seleccione la opción **Público**.
-* ```Sistema operativo```: seleccione la opción **Ubuntu Linux**.
-* ```Perfil```: deje seleccionado el perfil que viene por defecto (**Equilibrado | bx2-2x8**).
-* ```Claves SSH```: de click en el botón ```Clave nueva +```, asigne un nombre exclusivo para su clave *SSH*, seleccione el grupo de recursos y la ubicación y finalmente en **Clave pública** coloque la clave copiada en el ítem 3 del paso [Configurar claves SSH](#Configurar-claves-SSH-closed_lock_with_key). Posteriormente, de click en el botón ```Añadir clave SSH```.
-* ```Nube privada virtual```: seleccione la *VPC* creada anteriormente.
+* ```Name```: asigne un nombre exclusivo para la *VSI*.
+* ```Resource group```: seleccione el grupo de recursos en el cual va a trabajar (el mismo seleccionado en la creación de la *VPC*).
+* ```Location```: seleccione la ubicación en la cual desea implementar la subnet (la misma seleccionada en la creación de la *VPC*).
+* ```Hosting type```: seleccione la opción **Public**.
+* ```Operating system```: seleccione la opción **Ubuntu Linux**.
+* ```Profile```: deje seleccionado el perfil que viene por defecto (**Balanced | bx2-2x8**).
+* ```SSH keys```: dé click en el botón ```Create key +```, asigne un nombre exclusivo para su clave *SSH*, seleccione el grupo de recursos y la ubicación y finalmente en **Public key** coloque la clave copiada en el ítem 3 del paso [Configurar claves SSH](#Configurar-claves-SSH-closed_lock_with_key). Posteriormente, dé click en el botón ```Create```.
+* ```Virtual private cloud```: seleccione la *VPC* creada anteriormente.
 * Los demás parámetros no los modifique, deje los valores establecidos por defecto.
 
-Cuando ya tenga todos los campos configurados de click en el botón ```Crear instancia de servidor virtual```.
+Cuando ya tenga todos los campos configurados dé click en el botón ```Create virtual server instance```.
 
 2. Espere unos minutos mientras la *VSI* aparece en estado disponible y asegúrese de tener seleccionada la región en la cual la implementó.
 
@@ -232,11 +232,11 @@ Cuando ya tenga todos los campos configurados de click en el botón ```Crear ins
 
 
 ## Desplegar servidor VPN
-Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructura VPC*
+Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructura VPC*
 
-![image](screens/VPC.png)
+<img src="screens/VPC.png" alt="VPC" width="200"/>
 ## <h3>Crear servidor VPN</h3>
-   Ahora en seleccionamos el apartado de VPN y damos click en el boton de crear.
+   Ahora seleccione el apartado de VPN y dé click en el botón de crear.
 
    ![image](screens/vpn-crear.png)
 
@@ -246,67 +246,67 @@ Dirigase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestructu
 
    En la seccion de detalles, se debe especificar la siguiente informacion:
 
-   - **Nombre del servidor de VPN:** Escoge un nombre para tu servidor VPN, ejemplo: my-vpn-server.<br/>
-   - **El grupo de recursos:** El grupo de recursos que seleccionas debe ser el mismo que en donde se encuentra la VPC.
-   - **Región:** La misma region donde se encuentra la VPC se usara para el servidor de VPN.
+   - **Nombre del servidor de VPN:** Escoja un nombre para su servidor VPN, ejemplo: my-vpn-server.<br/>
+   - **El grupo de recursos:** El grupo de recursos que seleccione debe ser el mismo que en donde se encuentra la VPC.
+   - **Región:** La misma region donde se encuentra la VPC se usará para el servidor de VPN.
    - **Virtual private cloud:** Escoger la VPC para el servidor de VPN.
-   - **Client IPv4 address pool:** Ingrese un rango CIDR. Al cliente se le asigna una IP de este rango para su sesion.
+   - **Client IPv4 address pool:** Ingrese un rango CIDR. Al cliente se le asigna una IP de este rango para su sesión.
 
    ![image](screens/vpn-details.png)
 
-   Ahora en la seccion de subredes, se debe seleccionar la modalidad del servidor VPN:
+   Ahora en la sección de subnets, se debe seleccionar la modalidad del servidor VPN:
 
    - **Seleccionar la modalidad del servidor VPN:**
-      - **Modo de alta disponibilidad:** Este modo despliega el servidor en dos subredes que se encuentran ubicadas en diferentes zonas.Ideal para los despliegues y soluciones donde el acceso VPN de el cliente es crucial.
-      -**Modalidad autonoma:** Este modo despliega el servidor de VPN en una subred en una sola zona. Ideal para despliegas en una sola zona.
+      - **Modo de alta disponibilidad:** Este modo despliega el servidor en dos subnets que se encuentran ubicadas en diferentes zonas.Ideal para los despliegues y soluciones donde el acceso VPN de el cliente es crucial.
+      -**Modalidad autónoma:** Este modo despliega el servidor de VPN en una subnet en una sola zona. Ideal para despliegues en una sola zona.
 
       ![image](screens/vpn-subnets.png)
-   - **Seccion de autenticación:** 
-      - **Autenticacion del servidor:** Selecciona el gestor de certificados y luego el certificado SSL del servidor.
+   - **Sección de autenticación:** 
+      - **Autenticación del servidor:** Seleccione el gestor de certificados y luego el certificado SSL del servidor.
 
       ![image](screens/vpn-server-authentication.png)
 
-      - **Autenticación del cliente:** Se debe seleccionar que configuracion usara el cliente para autenticarse en el servidor, ya sea a traves de certificados o usando un ID y passcode, o ambas si se desea.
+      - **Autenticación del cliente:** Se debe seleccionar qué configuracion usará el cliente para autenticarse en el servidor, ya sea a través de certificados o usando un ID y passcode, o ambas si se desea.
 
       ![image](screens/vpn-client-authentication.png)
 
-   - **Sección grupos de seguridad:** Debes seleccionar al menos un grupo de seguridad.Tambien puede configurar mas grupos de seguridad si lo desea.
+   - **Sección grupos de seguridad:** Debe seleccionar al menos un grupo de seguridad.También puede configurar más grupos de seguridad si lo desea.
 
    ![image](screens/vpn-security-groups.png)
 
-   - **Configuración adicional:** Mantenga la configuracion recomendada.
+   - **Configuración adicional:** Mantenga la configuración recomendada.
 
    ![image](screens/vpn-additional-config.png)
       
 ## Validar servidor VPN
-   Para asegurarse de que el servidor VPN se desplego correctamente espere unos minutos y dirigase al apartado de VPN y en la seccion *client-to-site-servers* y asegurese de que el estado del servidor sea *Estable* y el *Estado* sea *Buen estado*.
+   Para asegurarse de que el servidor VPN se desplegó correctamente espere unos minutos y diríjase al apartado de VPN, en la seccion *client-to-site-servers* y asegúrese de que el estado del servidor sea *Estable* y el *Estado* sea *Buen estado*.
 
    ![image](screens/vpn-status.png)
 ## Crear ruta VPN
-   Ingrese a su servidor de VPN y en la pestaña de *Rutas de servidor VPN* de click en el boton *Crear*. 
+   Ingrese a su servidor de VPN y en la pestaña de *Rutas de servidor VPN* dé click en el boton *Crear*. 
 
    ![image](screens/vpn-routes.png)
 
-   Luego asignele un nombre a la ruta y escoga rango CIDR para la red destino:
+   Luego asígnele un nombre a la ruta y escoja rango CIDR para la red destino:
       - **Para acceso a internet:** Elija 0.0.0.0/0
       - **Para la subred de la VPC:** Ingrese el CIDR de la subred de la VPC.
 
-   Por ultimo escoja la accion de la ruta, en este caso sera *Entregar* y finalice dando click en el boton crear.
+   Por último escoja la acción de la ruta, en este caso será *Entregar* y finalice dando click en el boton crear.
 
    ![image](screens/vpn-config-route.png)
 
 ## Configurar el cliente de VPN
-   - **Ingrese al servidor de VPN:** En la pestaña cliente de click *Descargar perfil de cliente*. Descargara un archivo de configuracion llamado *<vpn_server>.ovpn*
+   - **Ingrese al servidor de VPN:** En la pestaña cliente dé click *Descargar perfil de cliente*. Descargará un archivo de configuración llamado *<vpn_server>.ovpn*
 
    ![image](screens/vpn-client.png)
 
-   - **Distribuya el archivo de perfil de cliente:** Envie el perfil de configuracion a los usuarios de la VPN a traves de un canal seguro.
+   - **Distribuya el archivo de perfil de cliente:** Envíe el perfil de configuración a los usuarios de la VPN a través de un canal seguro.
 
-   - **Configurar el archivo de perfil de cliente:** Los clientes de la VPN deben editar el perfil de cliente, para esto deben tener los certificados de la VPN los cuales deben ser enviados por un canal seguro, estos certificados deben ser añadidos al perfil del cliente de la siguiente manera:
+   - **Configurar el archivo de perfil de cliente:** Los clientes de la VPN deben editar el perfil de cliente, para esto deben tener los certificados de la VPN, los cuales deben ser enviados por un canal seguro, estos certificados deben ser añadidos al perfil del cliente de la siguiente manera:
 
    ![image](screens/config-cliente-profile.png)
 
-   Para editar el perfil del cliente puede usar un editor de codigo como *VS CODE* o el de su preferencia y agregar el certificado y su key al final del archivo perfil del cliente.
+   Para editar el perfil del cliente puede usar un editor de código como *VS CODE* o el de su preferencia y agregar el certificado y su key al final del archivo perfil del cliente.
 
    <br/>
    Una opción alternativa para conectarse al servidor VPN es por medio de un ID de usuario y una contraseña. Para configurar la autenticación en dos factores para usuarios de cliente VPN siga este proceso:
