@@ -15,6 +15,7 @@
    * [Crear servidor VPN](#h3crear-servidor-vpnh3)
    * [Validar servidor VPN](#validar-servidor-vpn)
    * [Crear ruta VPN](#crear-ruta-vpn)
+   *[Configurar Protocolo y reglas de entrada](#configurar-protocolo-y-reglas-de-entrada)
    * [Configurar cliente de VPN](#configurar-el-cliente-de-vpn)
 4. [Autenticación al servidor VPN](#autenticación-al-servidor-vpn)
 5. [Referencias](#Referencias-mag)
@@ -183,6 +184,10 @@ El siguiente paso consiste en crear una Subnet en la *VPC*. Para ello, en la sec
 
 Cuando ya tenga todos los campos configurados dé click en el botón ```Create subnet```.
 
+Luego de crear la subnet habilitar la opcion de pasarela publica.
+
+![image](screens/pasarela-publica-subnet.png)
+
 6. Espere unos minutos mientras la subnet aparece en estado disponible y asegúrese de tener seleccionada la región en la cual la implementó.
 
 <br />
@@ -295,6 +300,12 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
    Por último escoja la acción de la ruta, en este caso será *Entregar* y finalice dando click en el boton crear.
 
    ![image](screens/vpn-config-route.png)
+
+## Configurar Protocolo y reglas de entrada
+   En la seccion de grupos de seguridad seleccionar el grupo de seguridad de la VPC y en el apartado de entrada seleccionar el protocolo UDP
+   para el puerto 443 con la opción de cualquier origen y la direccion IP 0.0.0.0/0.
+
+   ![image](screens/config-vpn.png)
 
 ## Configurar el cliente de VPN
    - **Ingrese al servidor de VPN:** En la pestaña cliente dé click *Descargar perfil de cliente*. Descargará un archivo de configuración llamado *<vpn_server>.ovpn*
