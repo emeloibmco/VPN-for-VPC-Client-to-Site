@@ -361,6 +361,9 @@ Por ultimo recuerde que su usuario es el mismo que en IBM cloud y tambien debera
 ```
    https://iam.cloud.ibm.com/identity/passcode
 ```
+Asi debe lucir su conexion al servidor VPN desde el cliente de **Open VPN**
+
+![image](screens/conectar-opvn.png)
 
 Para verificar que se hizo la conexión adecuadamente, abra la página de detalles del servidor VPN. Luego verifique en la sección de clientes todos los clientes de VPN que se han conectado en a última hora.
 
