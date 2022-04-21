@@ -326,10 +326,34 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
    <br/>
 
 ## Autenticación al servidor VPN
-**Por certificado**
+Antes de realizar la conexion a traves de **Open VPN** debera descargar el perfil del cliente el cual tiene extension .ovpn en la seccion de cliente del servidor VPN.
+
+![image](screens/perfil-cliente.png)
+
+**Por certificado:**
+Para conectarse debera importar el perfil que descargo en el cliente de **Open VPN** y conectarse.
+
+![image](screens/perfil-cliente.png)
+
+<br/>
+
 **Usuario y contraseña**
 
-Finalmente, para realizar la conexión al servidor VPN use el cliente OpenVPN y el archivo de configuración. Para verificar que se hizo la conexión adecuadamente, abra la página de detalles del servidor VPN. Luego verifique en la sección de clientes todos los clientes de VPN que se han conectado en a última hora.
+Para conectarse usando usuario y contraseña primero debe habilitar la opcion de usuario y codigo de acceso en el apartado de **Autenticación** del servidor VPN. 
+
+![image](screens/habilitar-user-pass.png)
+
+Luego debera importar el perfil de cliente que descargo al cliente de **Open VPN**.
+
+Por ultimo recuerde que su usuario es el mismo que en IBM cloud y tambien debera generar un codigo de acceso para su usuario a traves del siguiente link:
+
+```
+   https://iam.cloud.ibm.com/identity/passcode
+```
+
+Para verificar que se hizo la conexión adecuadamente, abra la página de detalles del servidor VPN. Luego verifique en la sección de clientes todos los clientes de VPN que se han conectado en a última hora.
+
+![image](screens/conexiones.png)
 
 ## Referencias :mag:
 
