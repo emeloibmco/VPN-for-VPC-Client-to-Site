@@ -16,7 +16,7 @@
    * [Validar servidor VPN](#validar-servidor-vpn)
    * [Crear ruta VPN](#crear-ruta-vpn)
    * [Configurar cliente de VPN](#configurar-el-cliente-de-vpn)
-4. [Conexión al servidor VPN](#conexión-al-servidor-vpn)
+4. [Autenticación al servidor VPN](#autenticación-al-servidor-vpn)
 5. [Referencias](#Referencias-mag)
 6. [Autores](#Autores-black_nib)
 <br />
@@ -325,7 +325,9 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
    
    <br/>
 
-## Conexión al servidor VPN
+## Autenticación al servidor VPN
+**Por certificado**
+**Usuario y contraseña**
 
 Finalmente, para realizar la conexión al servidor VPN use el cliente OpenVPN y el archivo de configuración. Para verificar que se hizo la conexión adecuadamente, abra la página de detalles del servidor VPN. Luego verifique en la sección de clientes todos los clientes de VPN que se han conectado en a última hora.
 
