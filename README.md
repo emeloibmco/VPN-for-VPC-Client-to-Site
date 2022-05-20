@@ -90,11 +90,10 @@ Para importar los certificados al certificate manager siga estos pasos:
    * Elija un nombre para su certificado, este no puede contener guiones, números ni mayúsculas (ej. vpcdemo)
    * Dé clic al botón ```Browse``` y seleccione el archivo de certificado ```./pki/issued/vpn-server.vpn.ibm.com.crt```
    * Dé clic al botón ```Browse``` y seleccione el archivo de llave privada ```./pki/private/vpn-server.vpn.ibm.com.key```
-   * Dé clic al botón ```Browse``` y seleccione el archivo de certificado intermedio ```./pki/ca.crt```
+   * Dé clic al botón ```Browse``` y seleccione el archivo de certificado intermediario ```./pki/ca.crt```
    * Dé clic al botón ```Import```
    <br/>
 
-Si el certificado es usado como certificado de servidor VPN, usted debe subir los archivos ```Certificate file```, ```Private key file``` e ```Intermediate certificate file```. Si el certificado es usado como certificado de cliente VPN para autenticar el cliente, usted debe subir los archivos ```Certificate file``` e ```Intermediate certificate file```.
 <br/>
 
 **Opción 2. Ordenar un certificado usando Certificate Manager**
@@ -272,7 +271,7 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
 
       ![image](screens/vpn-server-authentication.png)
 
-      - **Client authentication:** Se debe seleccionar qué configuracion usará el cliente para autenticarse en el servidor, ya sea a través de certificados o usando un ID y passcode, o ambas si se desea.
+      - **Client authentication:** Se debe seleccionar qué configuracion usará el cliente para autenticarse en el servidor, ya sea a través de certificados o usando un ID y passcode, o ambas si se desea. Si se usa certificados, seleccione el mismo certificado que eligio en el paso anterior.
 
       ![image](screens/vpn-client-authentication.png)
 
@@ -317,7 +316,7 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
 
    ![image](screens/config-cliente-profile.png)
 
-   Para editar el perfil del cliente puede usar un editor de código como *VS CODE* o el de su preferencia y agregar el certificado y su key al final del archivo perfil del cliente.
+   Para editar el perfil del cliente puede usar un editor de código como *VS CODE* o el de su preferencia y agregar el certificado de cliente que genero al inicio y la private key del certificado al final del archivo perfil del cliente tal como se muestra en la imagen de arriba.
 
    <br/>
    Una opción alternativa para conectarse al servidor VPN es por medio de un ID de usuario y una contraseña. Para configurar la autenticación en dos factores para usuarios de cliente VPN siga este proceso:
@@ -337,14 +336,17 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
    <br/>
 
 ## Autenticación al servidor VPN
-Antes de realizar la conexion a traves de **Open VPN** debera descargar el perfil del cliente el cual tiene extension .ovpn en la seccion de cliente del servidor VPN.
-
-![image](screens/perfil-cliente.png)
 
 **Por certificado:**
-Para conectarse debera importar el perfil que descargo en el cliente de **Open VPN** y conectarse.
+Para conectarse debera importar el perfil de cliente que descargo y configuro en el paso anterior en **Open VPN** y conectarse.
 
-![image](screens/perfil-cliente.png)
+
+![image](screens/import-Cprofile.png)
+
+Asi debe lucir su conexión al servidor VPN desde el cliente de **Open VPN**
+
+![image](screens/crt-connect-opvpn.png)
+
 
 <br/>
 
@@ -361,7 +363,7 @@ Por ultimo recuerde que su usuario es el mismo que en IBM cloud y tambien debera
 ```
    https://iam.cloud.ibm.com/identity/passcode
 ```
-Asi debe lucir su conexion al servidor VPN desde el cliente de **Open VPN**
+Asi debe lucir su conexión al servidor VPN desde el cliente de **Open VPN**
 
 ![image](screens/conectar-opvn.png)
 
