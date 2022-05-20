@@ -83,9 +83,9 @@ Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vp
 Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/client1.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/client1.vpn.ibm.com.key```
 <br/>
 
-Para importar los certificados al certificate manager siga estos pasos:
+Para importar el certificado del servidor al certificate manager siga estos pasos:
 1. En el navegador Google Chrome diríjase a la página de [Certificate Manager](https://cloud.ibm.com/catalog/services/certificate-manager), complete la información y dé clic en ```Create``` para crear una instancia.
-2. Diríjase a la página ```Your Certificates``` e importe el certificado según los siguientes pasos:
+2. Diríjase a la página ```Your Certificates``` e importe el certificado del servidor según los siguientes pasos:
 
    * Elija un nombre para su certificado, este no puede contener guiones, números ni mayúsculas (ej. vpcdemo)
    * Dé clic al botón ```Browse``` y seleccione el archivo de certificado ```./pki/issued/vpn-server.vpn.ibm.com.crt```
