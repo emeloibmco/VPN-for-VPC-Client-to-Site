@@ -10,7 +10,7 @@
 2. [Antes de empezar](#antes-de-empezar)
    * [Configuración de la autenticación client-to-site e importación de certificados al Certificate Manager](#configuración-de-la-autenticación-client-to-site-gear)
    * [Creación del grupo de acceso IAM y rol para conectarse al servidor VPN](#creación-del-grupo-de-acceso-iam-y-rol-para-conectarse-al-servidor-vpn-oldkey)
-   * [Creación de la VPC y la subred](#creación-de-la-vpc-y-la-subred)
+   * [Creación de la VPC y la subred](#creación-de-la-vpc-y-la-subnet)
 3. [creación del servidor VPN](#desplegar-servidor-vpn)
    * [Crear servidor VPN](#h3crear-servidor-vpnh3)
    * [Validar servidor VPN](#validar-servidor-vpn)
