@@ -15,8 +15,9 @@
    * [Crear servidor VPN](#h3crear-servidor-vpnh3)
    * [Validar servidor VPN](#validar-servidor-vpn)
    * [Crear ruta VPN](#crear-ruta-vpn)
+   *[Configurar Protocolo y reglas de entrada](#configurar-protocolo-y-reglas-de-entrada)
    * [Configurar cliente de VPN](#configurar-el-cliente-de-vpn)
-4. [Conexión al servidor VPN](#conexión-al-servidor-vpn)
+4. [Autenticación al servidor VPN](#autenticación-al-servidor-vpn)
 5. [Referencias](#Referencias-mag)
 6. [Autores](#Autores-black_nib)
 <br />
@@ -82,18 +83,17 @@ Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/vp
 Verifique que la llave pública haya sido generada en la ruta ```./pki/issued/client1.vpn.ibm.com.crt``` y la llave privada en la ruta ```./pki/private/client1.vpn.ibm.com.key```
 <br/>
 
-Para importar los certificados al certificate manager siga estos pasos:
+Para importar el certificado del servidor al certificate manager siga estos pasos:
 1. En el navegador Google Chrome diríjase a la página de [Certificate Manager](https://cloud.ibm.com/catalog/services/certificate-manager), complete la información y dé clic en ```Create``` para crear una instancia.
-2. Diríjase a la página ```Your Certificates``` e importe el certificado según los siguientes pasos:
+2. Diríjase a la página ```Your Certificates``` e importe el certificado del servidor según los siguientes pasos:
 
    * Elija un nombre para su certificado, este no puede contener guiones, números ni mayúsculas (ej. vpcdemo)
    * Dé clic al botón ```Browse``` y seleccione el archivo de certificado ```./pki/issued/vpn-server.vpn.ibm.com.crt```
    * Dé clic al botón ```Browse``` y seleccione el archivo de llave privada ```./pki/private/vpn-server.vpn.ibm.com.key```
-   * Dé clic al botón ```Browse``` y seleccione el archivo de certificado intermedio ```./pki/ca.crt```
+   * Dé clic al botón ```Browse``` y seleccione el archivo de certificado intermediario ```./pki/ca.crt```
    * Dé clic al botón ```Import```
    <br/>
 
-Si el certificado es usado como certificado de servidor VPN, usted debe subir los archivos ```Certificate file```, ```Private key file``` e ```Intermediate certificate file```. Si el certificado es usado como certificado de cliente VPN para autenticar el cliente, usted debe subir los archivos ```Certificate file``` e ```Intermediate certificate file```.
 <br/>
 
 **Opción 2. Ordenar un certificado usando Certificate Manager**
@@ -183,6 +183,10 @@ El siguiente paso consiste en crear una Subnet en la *VPC*. Para ello, en la sec
 
 Cuando ya tenga todos los campos configurados dé click en el botón ```Create subnet```.
 
+Luego de crear la subnet habilitar la opcion de pasarela publica.
+
+![image](screens/pasarela-publica-subnet.png)
+
 6. Espere unos minutos mientras la subnet aparece en estado disponible y asegúrese de tener seleccionada la región en la cual la implementó.
 
 <br />
@@ -267,7 +271,7 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
 
       ![image](screens/vpn-server-authentication.png)
 
-      - **Client authentication:** Se debe seleccionar qué configuracion usará el cliente para autenticarse en el servidor, ya sea a través de certificados o usando un ID y passcode, o ambas si se desea.
+      - **Client authentication:** Se debe seleccionar qué configuracion usará el cliente para autenticarse en el servidor, ya sea a través de certificados o usando un ID y passcode, o ambas si se desea. Si se usa certificados, seleccione el mismo certificado que eligio en el paso anterior.
 
       ![image](screens/vpn-client-authentication.png)
 
@@ -296,6 +300,12 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
 
    ![image](screens/vpn-config-route.png)
 
+## Configurar Protocolo y reglas de entrada
+   En la seccion de grupos de seguridad seleccionar el grupo de seguridad de la VPC y en el apartado de entrada seleccionar el protocolo UDP
+   para el puerto 443 con la opción de cualquier origen y la direccion IP 0.0.0.0/0.
+
+   ![image](screens/config-vpn.png)
+
 ## Configurar el cliente de VPN
    - **Ingrese al servidor de VPN:** En la pestaña cliente dé click *Descargar perfil de cliente*. Descargará un archivo de configuración llamado *<vpn_server>.ovpn*
    <img src="screens/vpn-client.png" alt="VPN client" width="600"/>
@@ -306,7 +316,7 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
 
    ![image](screens/config-cliente-profile.png)
 
-   Para editar el perfil del cliente puede usar un editor de código como *VS CODE* o el de su preferencia y agregar el certificado y su key al final del archivo perfil del cliente.
+   Para editar el perfil del cliente puede usar un editor de código como *VS CODE* o el de su preferencia y agregar el certificado de cliente que genero al inicio y la private key del certificado al final del archivo perfil del cliente tal como se muestra en la imagen de arriba.
 
    <br/>
    Una opción alternativa para conectarse al servidor VPN es por medio de un ID de usuario y una contraseña. Para configurar la autenticación en dos factores para usuarios de cliente VPN siga este proceso:
@@ -325,9 +335,41 @@ Diríjase al Panel en la parte izquierda de IBM Cloud y seleccione *Infraestruct
    
    <br/>
 
-## Conexión al servidor VPN
+## Autenticación al servidor VPN
 
-Finalmente, para realizar la conexión al servidor VPN use el cliente OpenVPN y el archivo de configuración. Para verificar que se hizo la conexión adecuadamente, abra la página de detalles del servidor VPN. Luego verifique en la sección de clientes todos los clientes de VPN que se han conectado en a última hora.
+**Por certificado:**
+Para conectarse debera importar el perfil de cliente que descargo y configuro en el paso anterior en **Open VPN** y conectarse.
+
+
+![image](screens/import-Cprofile.png)
+
+Asi debe lucir su conexión al servidor VPN desde el cliente de **Open VPN**
+
+![image](screens/crt-connect-opvpn.png)
+
+
+<br/>
+
+**Usuario y contraseña**
+
+Para conectarse usando usuario y contraseña primero debe habilitar la opcion de usuario y codigo de acceso en el apartado de **Autenticación** del servidor VPN. 
+
+![image](screens/habilitar-user-pass.png)
+
+Luego debera importar el perfil de cliente que descargo al cliente de **Open VPN**.
+
+Por ultimo recuerde que su usuario es el mismo que en IBM cloud y tambien debera generar un codigo de acceso para su usuario a traves del siguiente link:
+
+```
+   https://iam.cloud.ibm.com/identity/passcode
+```
+Asi debe lucir su conexión al servidor VPN desde el cliente de **Open VPN**
+
+![image](screens/conectar-opvn.png)
+
+Para verificar que se hizo la conexión adecuadamente, abra la página de detalles del servidor VPN. Luego verifique en la sección de clientes todos los clientes de VPN que se han conectado en a última hora.
+
+![image](screens/conexiones.png)
 
 ## Referencias :mag:
 
