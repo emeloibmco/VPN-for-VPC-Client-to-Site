@@ -120,7 +120,7 @@ Para encontrar el CRN del certificado, siga estos pasos:
 
 Para crear un grupo de acceso IAM y permitir al rol de usuario conectarse al servidor VPN, siga estos pasos:
 
-1. Desde la consolda de IBM Cloud, navegue a la página de [Access groups](https://cloud.ibm.com/iam/groups) (Manage > Access (IAM) > Access groups) y dé clic en ```Create```.
+1. Desde la consola de IBM Cloud, navegue a la página de [Access groups](https://cloud.ibm.com/iam/groups) (Manage > Access (IAM) > Access groups) y dé clic en ```Create```.
 2. Digite un nombre para su grupo de acceso y dé clic en ```Create```.
 3. Dé clic en la pestaña ```Access Policies``` y luego en ```Assign access```.
 4. En el menú desplegable seleccione ```VPC Infrastructure Services```.
